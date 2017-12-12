@@ -50,7 +50,7 @@ router.get('/', function(req, res, next) {
           TableName:table,
           Item:{
               "id": uuidv1(),
-              "ip": req.headers["X-Real-IP"],
+              "ip": req.headers["x-real-ip"],
               "name": domains
           }
       };
@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
         if (err) {
           console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-          console.log("Added item:", JSON.stringify(data, null, 2));
+          console.log("Added item:):", JSON.stringify(data, null, 2));
         }
       });
   });
