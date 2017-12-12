@@ -6,6 +6,29 @@ AWS.config.update({region:'us-west-2'});
 AWS.config.apiVersions = {dynamodb: 'latest'}
 const uuidv1 = require('uuid/v1');
 
+router.get('/ips', function(req,res,next){
+  var docClient = new AWS.DynamoDB.DocumentClient();
+
+  var params = {
+      TableName: "connections",
+      ProjectionExpression: "ip",
+  };
+
+  console.log("Scanning connections table.");
+  docClient.scan(params, onScan);
+
+  function onScan(err, data) {
+      if (err) {
+          console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+      } else {
+          // print all the movies
+          console.log("Scan succeeded.");
+          console.log(data.Items.map(x => x.ip));
+          res.render('ip_list',{ips: data.Items.map(x => x.ip)});
+      }
+  }
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   /*require('dns').reverse(req.header('x-forwarded-for'), function(err, domains) {
