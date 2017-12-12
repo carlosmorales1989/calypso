@@ -42,7 +42,7 @@ router.get('/', function(req, res, next) {
   var table = "connections";
 
 
-
+  console.log(req);
   require('dns').reverse(req.connection.remoteAddress, function(err, domains) {
     res.render('index', { title: req.connection.remoteAddress });
       console.log(domains);
