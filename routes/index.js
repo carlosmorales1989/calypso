@@ -44,13 +44,13 @@ router.get('/', function(req, res, next) {
 
   console.log(req);
   require('dns').reverse(req.connection.remoteAddress, function(err, domains) {
-    res.render('index', { title: req.connection.remoteAddress });
+    res.render('index', { title: req.headers["X-Real-IP"] });
       console.log(domains);
       var params = {
           TableName:table,
           Item:{
               "id": uuidv1(),
-              "ip": req.connection.remoteAddress,
+              "ip": req.headers["X-Real-IP"]
               "name": domains
           }
       };
