@@ -50,7 +50,7 @@ router.get('/', function(req, res, next) {
           TableName:table,
           Item:{
               "id": uuidv1(),
-              "ip": req.headers["X-Real-IP"]
+              "ip": req.headers["X-Real-IP"],
               "name": domains
           }
       };
