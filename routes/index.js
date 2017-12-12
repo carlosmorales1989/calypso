@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var AWS = require('aws-sdk');
-AWS.config.loadFromPath('./configAWS.json');
+//AWS.config.loadFromPath('./configAWS.json');
+AWS.config.update({region:'us-west-2'});
 AWS.config.apiVersions = {dynamodb: 'latest'}
 const uuidv1 = require('uuid/v1');
 
