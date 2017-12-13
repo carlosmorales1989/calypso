@@ -5,6 +5,7 @@ var AWS = require('aws-sdk');
 AWS.config.update({region:'us-west-2'});
 AWS.config.apiVersions = {dynamodb: 'latest'}
 const uuidv1 = require('uuid/v1');
+const requestIp = require('request-ip');
 
 router.get('/ips', function(req,res,next){
   var docClient = new AWS.DynamoDB.DocumentClient();
@@ -44,13 +45,13 @@ router.get('/', function(req, res, next) {
 
   console.log(req);
   require('dns').reverse(req.connection.remoteAddress, function(err, domains) {
-    res.render('index', { title: req.headers["X-Real-IP"] });
+    res.render('index', { title: requestIp.getClientIp(req) });
       console.log(domains);
       var params = {
           TableName:table,
           Item:{
               "id": uuidv1(),
-              "ip": req.headers["x-real-ip"],
+              "ip": requestIp.getClientIp(req),
               "name": domains
           }
       };
