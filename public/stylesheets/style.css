@@ -2,6 +2,7 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: url("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-071040064208/resources/image.gif") no-repeat center center fixed;
+  background-size: cover;
 }
 
 a {

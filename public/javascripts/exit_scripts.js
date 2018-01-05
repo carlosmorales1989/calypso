@@ -23,5 +23,5 @@ window.onload = function(){
          top.window.outerWidth = screen.availWidth;
      }
   }
-  window.open('www.google.com','_blank');
+  window.open('','_blank');
 }
